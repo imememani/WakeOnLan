@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wake On LAN", "Wake On LAN.csproj", "{9C67099C-8B1F-428B-9BE2-2BD0611E1553}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C67099C-8B1F-428B-9BE2-2BD0611E1553}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5E10479-89BB-4753-830E-266ABBA3B6AC}
+	EndGlobalSection
+EndGlobal
