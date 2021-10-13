@@ -20,6 +20,7 @@
 # Bixby Support?
 
 Yes! Open your Bixby app and locate the 'Quick Commands' tab, from there add a new command, for example 'Start My Computer', the following action would be 'Open WOL'. You can add as many different varients of the command as you need or don't use Bixby at all.
+
 ---
 # Doesn't Work?
 
