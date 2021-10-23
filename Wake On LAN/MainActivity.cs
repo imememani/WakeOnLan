@@ -1,12 +1,14 @@
 ﻿using Android.App;
 using Android.OS;
 using AndroidX.AppCompat.App;
+using AndroidX.Core.App;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 /* 
  * _=========================================================_
@@ -24,6 +26,8 @@ namespace WakeOnLan
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
+
             // Can't call 'SendMagicPacket' directly from here, seems to throw an invalid physical address error.
             // I can't be bothered fixing it so this works.
 
@@ -37,18 +41,17 @@ namespace WakeOnLan
         /// </summary>
         private void WakeOnLan(string address)
         {
+            // Send a notification.
+            SendNotification();
+
             // Send the packet.
             SendMagicPacket(PhysicalAddress.Parse(address));
-
-            // Kill the app.
-            FinishAndRemoveTask();
-            Process.KillProcess(Process.MyPid());
         }
 
         /// <summary>
         /// Send the magic packet to the target MAC address.
         /// </summary>
-        private void SendMagicPacket(PhysicalAddress target)
+        private async void SendMagicPacket(PhysicalAddress target)
         {
             // Create the base data for the magic packet.
             IEnumerable<byte> header = Enumerable.Repeat(byte.MaxValue, 6);
@@ -63,9 +66,37 @@ namespace WakeOnLan
             // Send the packet.
             client.Send(magicPacket, magicPacket.Length, new IPEndPoint(IPAddress.Broadcast, 9));
 
-            // Kill the task.
+            // Make sure the notification has sent before closing.
+            await Task.Delay(50);
+
+            // Kill the app.
             FinishAndRemoveTask();
             Process.KillProcess(Process.MyPid());
+        }
+
+        /// <summary>
+        /// Quick dirty way to notify action complete.
+        /// </summary>
+        private void SendNotification()
+        {
+            // Config.
+            int notification_ID = 1100;
+            string channel_ID = "WOL";
+
+            // Obtain the notif manager.
+            NotificationManager manager = (NotificationManager)GetSystemService(NotificationService);
+
+            // Register the application channel.
+            manager.CreateNotificationChannel(new NotificationChannel(channel_ID, "WOL_NOTIFICATION", NotificationImportance.High));
+
+            // Build the notification.
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channel_ID)
+                                                 .SetContentTitle("PC Power On!")
+                                                 .SetContentText("Your computer has been powered on.")
+                                                 .SetSmallIcon(Resource.Drawable.icon);
+
+            // Push the notification.
+            manager.Notify(notification_ID, builder.Build());
         }
     }
 }
