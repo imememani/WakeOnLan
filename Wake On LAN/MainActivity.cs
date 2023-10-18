@@ -15,7 +15,19 @@ using System.Threading.Tasks;
  * | The code is super basic and can be optimised further.   |
  * | I will leave it as is, feel free to modify and improve. |
  * | Ensure changes are made on a seperate branch from main. |
+ * |                                                         |
+ * | If not working, ensure firewall allows port 9 UDP In!!  |
+ * | This is essential otherwise firewall will block packet. |
+ * |                                                         |
  * ===========================================================
+ * 
+ * Helpful links:
+ * - Will show what adapter settings are needed, should work for Win11 too.
+ * https://www.windowscentral.com/how-enable-and-use-wake-lan-wol-windows-10
+ * 
+ * MSI Motherboards:
+ * - What options need to be changed on an MSI motherboard (should generally apply to all others that support WOL).
+ * https://us.msi.com/faq/motherboard-503#:~:text=In%20Windows%20device%20manager%2C%20go,device%20to%20wake%20the%20computer%5D.
  */
 
 namespace WakeOnLan
